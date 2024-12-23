@@ -1,0 +1,203 @@
+body{
+    /* background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.02) 2px, transparent 2px), 
+        linear-gradient(to right, rgba(0, 0, 0, 0.02) 2px, transparent 2px);
+    background-size: 50px 50px; */
+    background-color: #F5F7FF;
+    background-position: 30px 30px,;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    /* box-shadow: 0 0 5px;
+    background-color: rgba(172, 255, 47, 0.6);
+    border-radius: 40px 20px 20px 40px; */
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    min-width: 550px;
+    max-width: 60vw;
+    min-height: calc(100vh - 80px);
+    position: relative;
+}
+.calculator {
+    box-shadow: 0 0 5px;
+    border: 2px solid rgba(0,0,0,0.05);
+    background-color: white;
+    z-index: 1000;
+    padding: 20px 20px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 50%;
+    /* Translation */
+    position: relative;
+    left: 50%;
+    translate: -50%;
+    transition:1000ms ease;
+    
+}
+.display {
+    grid-column: span 4;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    background-color: greenyellow;
+    justify-content: right;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 100px;
+    color: black;
+    font-family: "Lexend Exa", serif;
+    font-weight: normal;
+    letter-spacing: -1px;
+    padding-right: 0.2em;
+    min-height: 1.4em;
+    margin: 0.2em 0px;
+    font-size: 60px;
+    
+}
+.key{
+    background-color: #D8DDF0;
+    color: #6E7691;
+    /* aspect-ratio: 1; */
+    border-radius: 100px;
+    border: none;
+    box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.1);
+    font-size: 30px;
+    font-family: "Lexend Exa", serif;
+    font-weight: bolder;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    min-height: 2.5em;
+}
+.history{
+    align-self: stretch;
+    width: 50%;
+    font-family: "Lexend Exa", serif;
+    font-size: 35px;
+    font-weight: bold;
+    color: rgb(91, 91, 91);
+    border-radius: 0 40px 40px 0;
+    background-color: #FFD84F;
+    box-sizing: border-box;
+    padding: 50px 0 0 20px;
+    /* Translation */
+    position: relative;
+    translate: -50%;
+    transition: 1000ms ease;
+}
+.operation {
+    font-family: "Lexend Exa", serif;
+    font-weight: bold;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    z-index: 100;
+    /* border-bottom: 3px solid rgb(0, 0, 0);
+    border-top: 3px solid rgb(0, 0, 0); */
+    /* border: 2px solid black; */
+}
+.operand {
+    font-family: "Lexend Exa", serif;
+    font-weight: bold;
+}
+.separate{
+    border-bottom: 2px solid rgba(0, 0, 0, 0.253);
+}
+.arrow-toggle{
+    padding: 10px 0;
+    background-color: #FFD84F;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 99%;
+    translate: 0% -50%;
+}
+.arrow-toggle > img{
+    height: 40px;
+}
+.container:hover > .history{/*:hover*/
+    border-radius: 0 20px 20px 0;
+    translate: 0;
+}
+.container:hover > .calculator{/*:hover*/
+    left: 0;
+    translate: 0;
+}
+.key:hover{
+    cursor: pointer;
+}
+.key:active{
+    box-shadow: none;
+    top: 2px;
+}
+.key.div{
+    background-color: #FF445A;
+}
+.key .div{
+    width: 45px;
+}
+.key.sum{
+    background-color: #63DE77;
+}
+.key .sum{
+    width: 40px;
+}
+.key.sub{
+    background-color: #FFC804;
+}
+.key .sub{
+    width: 40px;
+}
+.key.mult{
+    background-color: #2388FF;
+}
+.key .mult{
+    width: 40px;
+}
+.key.equal{
+    background-color: #F5F7FF;
+}
+.key .equal{
+    width: 35px;
+}
+.key.percent{
+    background-color: #F5F7FF;
+}
+.key .percent{
+    width: 40px;
+}
+.key.root{
+    background-color:  #F5F7FF;
+}
+.key .root{
+    width: 35px;
+}
+.key.ce{
+    background-color:  #1F2B54;
+    color: white;
+}
+.aux{
+    /* border: 3px solid blue; */
+    background-color: #FFD84F;
+    width: 20%;
+    height: 100%;
+    z-index: -100;
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+}
