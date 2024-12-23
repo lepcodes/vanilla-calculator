@@ -166,8 +166,8 @@ function displayHistory(number, operator, count){
   num.innerText = number;
   op.innerText = operator;
   console.log("Operation count: " + count)
-  document.getElementById('operation'+count).prepend(num);
-  document.getElementById('operation'+count).prepend(op);
+  document.getElementById('operation'+count).appendChild(num);
+  document.getElementById('operation'+count).appendChild(op);
   document.getElementById('operation'+count).classList.add('separate');
   newInput = true;
   // if(operator == '='){
