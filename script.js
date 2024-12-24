@@ -21,12 +21,15 @@ const operations = {
 
 let prevKey = '0';
 let operationCount = 0;
+let operandCount = 0;
+let operatorCount = 0;
 
 // Create first operation div
 let operation = document.createElement('div');
 operation.classList.add('operation');
 operation.id = 'operation'+operationCount;
 document.querySelector('.history').prepend(operation);
+appendNumberBox(0, operationCount);
 
 function handleKeyPress(key) {
   console.log(key)
@@ -60,6 +63,7 @@ function handleKeyPress(key) {
     appendToInput(key);
   }
   console.log("Operation Count: " + operationCount)
+  console.log("Operand Count: " + operandCount)
   console.log("Input: " + input)
   console.log("Operand1: " + operand1)
   console.log("Operator: " + operator)
@@ -79,15 +83,19 @@ function handleKeyRelease(key) {
 function checkNewOperation(){
   if (newOperation){
     // Add the final result to the history before creating a new operation
-    // console.log("Hola" + input)
     if (operationCount > 0){
-      displayHistory(input, '', operationCount-1); 
-
+      prependNumber(input, operandCount++, operationCount-1);
+      
+      // Small text to previous operation
+      let prevOperation = document.getElementById('operation' + (operationCount-1));
+      prevOperation.classList.add('prev-operation');
+      prevOperation.classList.add('separate')
       // Create a new operation div 
       operation = document.createElement('div');
       operation.classList.add('operation');
       operation.id = 'operation'+operationCount;
       document.querySelector('.history').prepend(operation);
+      appendNumberBox(input, operationCount);
       newOperation = false;
     }
     
@@ -99,13 +107,13 @@ function appendToInput(char) {
   checkNewOperation()
 
   if (newInput) {
-    console.log("New input")
     input = char;
     newInput = false;
   }
   else{
     input += char;
   }
+  changeNumberBox(input, operationCount);
   display.textContent = input;
   
 }
@@ -119,12 +127,18 @@ function applyOperator(op) {
       operand1 = input;
       operator = op;
       newInput = true;
-      displayHistory(operand1, op, operationCount);
+      removeNumberBox(operationCount);
+      appendNumber(operand1, operandCount++, operationCount);
+      appendOperator(operator, operatorCount++, operationCount);
+      appendNumberBox(operand1, operationCount);
     }
     else if(operand2 == ''){
       operand2 = input;
       let result = eval(operand1+operator+operand2);
-      displayHistory(operand2, op, operationCount);
+      removeNumberBox(operationCount);
+      appendNumber(operand2, operandCount++, operationCount);
+      appendOperator(op, operatorCount++, operationCount);
+      appendNumberBox(result, operationCount);
       operand1 = result.toString();
       operand2 = '';
       operator = op;
@@ -135,7 +149,11 @@ function applyOperator(op) {
     }
     
   }
-  operator = op;
+  else{
+    changeOperator(op, operatorCount-1);
+    operator = op;
+  }
+  
 }
 
 function calculateResult() {
@@ -145,7 +163,10 @@ function calculateResult() {
   else if(operand2 == ''){
     operand2 = input;
     let result = eval(operand1+operator+operand2);
-    displayHistory(operand2, '=', operationCount);
+    removeNumberBox(operationCount);
+    prependOperator('=', operatorCount++, operationCount);
+    appendNumber(operand2, operandCount++, operationCount);
+    resultEffect(operatorCount-1);
     operand1 = '';
     operand2 = '';
     // 
@@ -157,29 +178,74 @@ function calculateResult() {
   }
 }
 
-function displayHistory(number, operator, count){
+function appendOperator(operator, operatorNum, operationNum){
   operator = mapOperators(operator)
-  let num = document.createElement('div');
   let op = document.createElement('div');
-  num.classList.add('operand');
-  op.classList.add('operand');
-  num.innerText = number;
+  op.classList.add('operator');
+  op.id = 'operator' + operatorNum;
   op.innerText = operator;
-  console.log("Operation count: " + count)
-  document.getElementById('operation'+count).appendChild(num);
-  document.getElementById('operation'+count).appendChild(op);
-  document.getElementById('operation'+count).classList.add('separate');
-  newInput = true;
-  // if(operator == '='){
-  //   let div = document.createElement('div');
-  //   div.innerText = '------------------';
-  //   document.getElementById('result').prepend(div);
-  // }
+  document.getElementById('operation' + operationNum).appendChild(op);
+  console.log("operator appended")
+}
 
-  
+function appendNumber(number, operandNum, operationNum){
+  let num = document.createElement('div');
+  num.classList.add('operand');
+  num.id = 'operand' + operandNum;
+  num.innerText = number;
+  document.getElementById('operation' + operationNum).appendChild(num);
+}
+
+function prependOperator(operator, operatorNum, operationNum){
+  operator = mapOperators(operator)
+  let op = document.createElement('div');
+  op.classList.add('operator');
+  op.id = 'operator' + operatorNum;
+  // op.style.color = (operator == '=') ? 'green' : 'gray';
+  op.innerText = operator;
+  document.getElementById('operation' + operationNum).prepend(op);
+}
+
+function prependNumber(number, operandNum, operationNum){
+  let num = document.createElement('div');
+  num.classList.add('operand');
+  num.id = 'operand' + operandNum;
+  num.innerText = number;
+  document.getElementById('operation' + operationNum).prepend(num);
+}
+
+function changeOperator(operator, operatorNum){
+  operator = mapOperators(operator)
+  document.getElementById('operator' + operatorNum).innerText = operator;
+}
+
+function appendNumberBox(number, operationNum){
+  let numBox = document.createElement('div');
+  numBox.classList.add('number-box');
+  numBox.id = 'number-box' + operationNum;
+  numBox.innerText = number;
+  document.getElementById('operation' + operationNum).appendChild(numBox);
+}
+
+function changeNumberBox(number, operationNum){
+  document.getElementById('number-box' + operationNum).innerText = number;
+}
+
+function removeNumberBox(operationNum){
+  document.getElementById('number-box' + operationNum).remove();
+}
+
+function resultEffect(operatorCount){
+  let container = document.querySelector('.container');
+  console.log("Holalaaaaa"+operatorCount)
+  let equal = document.getElementById('operator' + operatorCount);
+  container.classList.toggle('shine-container');
+  equal.classList.toggle('shine-equal');
+  // container.classList.remove('shine');
 }
 
 function checkIfValid(){
+  console.log(prevKey)
   if (operations[prevKey]){
     return false
   }
@@ -244,12 +310,14 @@ function clearAll() {
   newInput = true;
   console.log("Operation count: " + operationCount)
   document.getElementById('operation'+operationCount).innerHTML = '';
+  appendNumberBox(0, operationCount);
 }
 
 function clearEntry() {
   display.textContent = 0;
   input = '0';
   newInput = true;
+  changeNumberBox(0, operationCount);
 }
 
 // Event Listeners

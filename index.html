@@ -11,11 +11,6 @@
 </head>
 <body class="finisher-header">
     <div class="container"> 
-      <div class="history">
-        <button class="arrow-toggle">
-            <img src="resources/img/arrow-toggle.svg" alt=">">
-        </button>
-      </div>
         <div class="calculator">
             <div class="display">0</div>
             <button class="key percent" onclick="handleKeyPress('%')">
@@ -50,11 +45,16 @@
 
             <button id="." class="key" onclick="handleKeyPress('.')">.</button>
             <button id="0" class="key" onclick="handleKeyPress('0')">0</button>
-            <button id="=" class="key" onclick="handleKeyPress('=')">
+            <button id="=" class="key equal" onclick="handleKeyPress('=')">
                 <img class="equal" src="resources/img/equal.svg" alt="=">
             </button>
             <button id="+" class="key sum" onclick="handleKeyPress('+')">
                 <img class="sum" src="resources/img/plus.svg" alt="+">
+            </button>
+        </div>
+        <div class="history">
+            <button class="arrow-toggle">
+                <img src="resources/img/arrow-toggle.svg" alt=">">
             </button>
         </div>
         <div class="aux">

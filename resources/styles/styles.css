@@ -3,8 +3,11 @@ body{
         linear-gradient(rgba(0, 0, 0, 0.02) 2px, transparent 2px), 
         linear-gradient(to right, rgba(0, 0, 0, 0.02) 2px, transparent 2px);
     background-size: 50px 50px; */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #F5F7FF;
-    background-position: 30px 30px,;
     margin: 0;
     padding: 0;
 }
@@ -12,15 +15,14 @@ body{
     /* box-shadow: 0 0 5px;
     background-color: rgba(172, 255, 47, 0.6);
     border-radius: 40px 20px 20px 40px; */
-    margin: 40px auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 0px;
-    min-width: 550px;
-    max-width: 60vw;
-    min-height: calc(100vh - 80px);
+    min-width: 700px;
+    width: 60vw;
+    max-height: calc(100vh - 80px);
     position: relative;
+    border: 5px solid transparent;
+    border-radius: 45px 25px 25px 45px;
 }
 .calculator {
     box-shadow: 0 0 5px;
@@ -37,8 +39,8 @@ body{
     width: 50%;
     /* Translation */
     position: relative;
-    left: -50%;
-    translate: 50%;
+    left: 50%;
+    translate: -50%;
     transition:1000ms ease;
     
 }
@@ -47,12 +49,12 @@ body{
     overflow: hidden;
     white-space: nowrap;
     display: flex;
-    background-color: greenyellow;
+    background-color: #2388FF;
     justify-content: right;
     align-items: center;
     box-sizing: border-box;
     border-radius: 100px;
-    color: black;
+    color: white;
     font-family: "Lexend Exa", serif;
     font-weight: normal;
     letter-spacing: -1px;
@@ -88,47 +90,79 @@ body{
     font-weight: bold;
     color: rgb(91, 91, 91);
     border-radius: 40px;
-    background-color: #FFD84F;
+    background-color: #c8c8c8;
     box-sizing: border-box;
     padding: 50px 20px 20px 20px;
     /* Translation */
     position: relative;
-    translate: 50%;
+    translate: -50%;
     transition: 1000ms ease;
 }
 .operation {
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 100%;
     z-index: 100;
+    font-size: 50px;
     /* border-bottom: 3px solid rgb(0, 0, 0);
     border-top: 3px solid rgb(0, 0, 0); */
     /* border: 2px solid black; */
 }
 .separate{
-    border-bottom: 2px solid rgba(0, 0, 0, 0.253);
+    border-top: 2px solid rgba(0, 0, 0, 0.253);
 }
 .operand {
     font-family: "Lexend Exa", serif;
     font-weight: bold;
-    font-size: 60px;
+    /* font-size: 50px; */
 }
-
-.arrow-toggle{
-    padding: 10px 0;
-    background-color: #FFD84F;
-    border: none;
-    border-radius: 10px 0 0 10px;
-    display: flex;
-    position: absolute;
-    top: 50%;
-    right: 99%;
-    translate: 0% -50%;
+.operator{
+    font-family: "Lexend Exa", serif;
+    /* font-style: italic; */
+    /* font-size: 50px; */
+}
+.number-box{
+    border: 2px solid rgba(0, 0, 0, 0.721);
+    border-style: dashed;
+    /* padding: 0 0.2em 0 0; */
+    /* font-size: 50px; */
+}
+.prev-operation{
+    font-family: "Lexend Exa", serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+.shine-container{
+    animation: shine-container 0.8s ease-in-out;
+}
+@keyframes shine-container {
+    0% {
+        color: gray;
+        border-color: transparent;
+    }
+    50% {
+        border-color: #63DE77;
+    }
+    100% {
+        border-color: transparent; 
+    }
+}
+.shine-equal{
+    animation: shine-equal 0.8s  ease-in-out;
+}
+@keyframes shine-equal{
+    0% {
+    }
+    50% {
+        color: #63DE77;
+    }
+    100% {
+        color: gray; 
+    }
 }
 .arrow-toggle > img{
-    transform: rotate(180deg);
     height: 40px;
 }
 .container:hover > .history{/*:hover*/
@@ -178,7 +212,7 @@ body{
 }
 .key.percent{
     background-color: #F5F7FF;
-}
+}   
 .key .percent{
     width: 40px;
 }
@@ -194,11 +228,25 @@ body{
 }
 .aux{
     /* border: 3px solid blue; */
-    background-color: #FFD84F;
+    background-color: #c8c8c8;
     width: 20%;
     height: 100%;
     z-index: -100;
+    border: 2px solid rgba(0,0,0,0.05);
     box-sizing: border-box;
     position: absolute;
     display: flex;
+    left: 50%;
+    translate: -50%;
+}
+.arrow-toggle{
+    padding: 10px 0;
+    background-color: #c8c8c8;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 99%;
+    translate: 0% -50%;
 }
