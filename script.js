@@ -5,6 +5,7 @@ let newOperation = true;
 let operand1 = '';
 let operand2 = '';
 let operator = '';
+let result = 0;
 
 
 // Mapping keys to operations
@@ -84,12 +85,13 @@ function checkNewOperation(){
   if (newOperation){
     // Add the final result to the history before creating a new operation
     if (operationCount > 0){
-      prependNumber(input, operandCount++, operationCount-1);
+      prependNumber(result, operandCount++, operationCount-1);
       
       // Small text to previous operation
       let prevOperation = document.getElementById('operation' + (operationCount-1));
       prevOperation.classList.add('prev-operation');
       prevOperation.classList.add('separate')
+
       // Create a new operation div 
       operation = document.createElement('div');
       operation.classList.add('operation');
@@ -134,7 +136,7 @@ function applyOperator(op) {
     }
     else if(operand2 == ''){
       operand2 = input;
-      let result = eval(operand1+operator+operand2);
+      result = eval(operand1+operator+operand2);
       removeNumberBox(operationCount);
       appendNumber(operand2, operandCount++, operationCount);
       appendOperator(op, operatorCount++, operationCount);
@@ -162,7 +164,7 @@ function calculateResult() {
   }
   else if(operand2 == ''){
     operand2 = input;
-    let result = eval(operand1+operator+operand2);
+    result = eval(operand1+operator+operand2);
     removeNumberBox(operationCount);
     prependOperator('=', operatorCount++, operationCount);
     appendNumber(operand2, operandCount++, operationCount);

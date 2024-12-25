@@ -1,8 +1,4 @@
 body{
-    /* background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.02) 2px, transparent 2px), 
-        linear-gradient(to right, rgba(0, 0, 0, 0.02) 2px, transparent 2px);
-    background-size: 50px 50px; */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -12,14 +8,12 @@ body{
     padding: 0;
 }
 .container{
-    /* box-shadow: 0 0 5px;
-    background-color: rgba(172, 255, 47, 0.6);
-    border-radius: 40px 20px 20px 40px; */
     display: flex;
     padding: 0px;
     min-width: 700px;
     width: 60vw;
-    max-height: calc(100vh - 80px);
+    /* min-height: calc(100vh - 80px); */
+    height: calc(100vh - 100px);
     position: relative;
     border: 5px solid transparent;
     border-radius: 45px 25px 25px 45px;
@@ -29,13 +23,15 @@ body{
     border: 2px solid rgba(0,0,0,0.05);
     background-color: white;
     z-index: 1000;
-    padding: 20px 20px;
+    padding: 30px 20px;
     border-radius: 40px;
     box-sizing: border-box;
     align-self: stretch;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-rows: repeat(6,1fr);
+    grid-auto-flow: row;
+    gap: 10px;
     width: 50%;
     /* Translation */
     position: relative;
@@ -57,17 +53,16 @@ body{
     color: white;
     font-family: "Lexend Exa", serif;
     font-weight: normal;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
     padding-right: 0.2em;
-    min-height: 1.4em;
-    margin: 0.2em 0px;
+    margin-bottom: 0.1em;
+    min-height: 1.2em;
     font-size: 60px;
-    
+    box-shadow: inset 0px 0px 10px 1px rgba(0, 0, 0, 0.337);
 }
 .key{
     background-color: #D8DDF0;
     color: #6E7691;
-    /* aspect-ratio: 1; */
     border-radius: 100px;
     border: none;
     box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.1);
@@ -80,11 +75,12 @@ body{
     justify-content: center;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.05);
-    min-height: 2.5em;
+    /* min-height: 2.5em; */
 }
 .history{
-    align-self: stretch;
+    /* align-self: stretch; */
     width: 50%;
+    height: 100%;
     font-family: "Lexend Exa", serif;
     font-size: 35px;
     font-weight: bold;
@@ -93,10 +89,31 @@ body{
     background-color: #c8c8c8;
     box-sizing: border-box;
     padding: 50px 20px 20px 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     /* Translation */
     position: relative;
     translate: -50%;
     transition: 1000ms ease;
+}
+.history::-webkit-scrollbar {
+    display: block;
+    width: 10px;
+}
+.history::-webkit-scrollbar-track {
+    background: transparent;
+}
+.history::-webkit-scrollbar-thumb {
+    background-color: #2388FF;
+    border-radius: 100px;
+}
+.history::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 40px; 
+}
+.history::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 40px;
 }
 .operation {
     box-sizing: border-box;
@@ -120,14 +137,10 @@ body{
 }
 .operator{
     font-family: "Lexend Exa", serif;
-    /* font-style: italic; */
-    /* font-size: 50px; */
 }
 .number-box{
-    border: 2px solid rgba(0, 0, 0, 0.721);
-    border-style: dashed;
-    /* padding: 0 0.2em 0 0; */
-    /* font-size: 50px; */
+    border: 2px dashed rgba(91, 91, 91, 0.675);
+    border-radius: 5px;
 }
 .prev-operation{
     font-family: "Lexend Exa", serif;
