@@ -138,7 +138,6 @@ function applyOperator(op) {
     else if(operand2 == ''){
       operand2 = input;
       result = eval(operand1+operator+operand2);
-      // removeNumberBox(operationCount);
       setNumberStyle(operandCount, 'operand');
       appendOperator(op, operationCount);
       appendNumber(result, operationCount, 'operand-box');
@@ -160,24 +159,26 @@ function applyOperator(op) {
 }
 
 function calculateResult() {
+  if(prevKey == '=')
+    return
   if(operand1 == ''){
-    newInput = true;
+    operand1 = input;
+    result = operand1;
   }
   else if(operand2 == ''){
     operand2 = input;
     result = eval(operand1+operator+operand2);
-    setNumberStyle(operandCount, 'operand');
-    prependOperator('=', operationCount);
-    resultEffect(operatorCount-1);
-    operand1 = '';
-    operand2 = '';
-    // 
-    display.textContent = result;
-    input = result;
-    newInput = true;
-    newOperation = true;
-    operationCount += 1;
   }
+  setNumberStyle(operandCount, 'operand');
+  prependOperator('=', operationCount);
+  resultEffect(operatorCount);
+  operand1 = '';
+  operand2 = '';
+  display.textContent = result;
+  input = result;
+  newInput = true;
+  newOperation = true;
+  operationCount += 1;
 }
 
 function applySqrt() {
