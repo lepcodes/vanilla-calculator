@@ -189,12 +189,23 @@ function applySqrt() {
   newInput = true;
 }
 
-// function applyPercentage() {
-//   const result = eval(operation) / 100;
-//   display.textContent = formatResult(result);
-//   operation = result.toString();
-//   input = '';
-// }
+function applyPercentage() {
+  if (operand1 == '')
+    return
+  else if (operand2 == ''){
+    let pctg = 0;
+    if (operator == '+' || operator == '-'){
+      pctg = eval('(' + operand1 + '*' + input + '/100)')
+    }
+    else if (operator == '*' || operator == '/'){
+      pctg = eval(input + '*0.01');
+    }
+    setNumber(input+'%',operandCount,'operand-box');
+    display.textContent = pctg;
+    input = pctg;
+    newInput = true;
+  }
+}
 
 function appendOperator(operator, operationNum){
     operator = mapOperators(operator);
