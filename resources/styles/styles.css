@@ -1,3 +1,6 @@
+html{
+    font-size: clamp(40px, 8vw, 55px);
+}
 body{
     height: 100vh;
     display: flex;
@@ -10,13 +13,19 @@ body{
 .container{
     display: flex;
     padding: 0px;
-    min-width: 700px;
     width: 60vw;
-    /* min-height: calc(100vh - 80px); */
     height: calc(100vh - 100px);
     position: relative;
     border: 5px solid transparent;
     border-radius: 45px 25px 25px 45px;
+}
+/* Styles for screens smaller than 768px */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column-reverse; 
+        width: 90vw;
+        height: 90vh;
+    }
 }
 .calculator {
     box-shadow: 0 0 5px;
@@ -38,7 +47,16 @@ body{
     left: 50%;
     translate: -50%;
     transition:1000ms ease;
-    
+}
+@media (max-width: 768px) {
+    .calculator {
+        flex-direction: column-reverse; 
+        width: auto;
+        height: 70%;
+        left: 0%;
+        bottom: 15%;
+        translate: 0; 
+    }
 }
 .display {
     grid-column: span 4;
@@ -57,7 +75,7 @@ body{
     padding-right: 0.2em;
     margin-bottom: 0.1em;
     min-height: 1.2em;
-    font-size: 60px;
+    font-size: 1rem;
     box-shadow: inset 0px 0px 10px 1px rgba(0, 0, 0, 0.337);
 }
 .key{
@@ -66,7 +84,7 @@ body{
     border-radius: 100px;
     border: none;
     box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.1);
-    font-size: 30px;
+    font-size: 0.6rem;
     font-family: "Lexend Exa", serif;
     font-weight: bolder;
     display: flex;
@@ -77,6 +95,11 @@ body{
     border: 1px solid rgba(0,0,0,0.05);
     /* min-height: 2.5em; */
 }
+@media (max-width: 768px) {
+    .key {
+        font-size: 0.7rem;
+    }
+}
 .history{
     /* align-self: stretch; */
     display: flex;
@@ -84,18 +107,27 @@ body{
     width: 50%;
     height: 100%;
     font-family: "Lexend Exa", serif;
-    font-size: 35px;
+    font-size: 1rem;
     font-weight: bold;
     color: rgb(91, 91, 91);
     border-radius: 40px;
     background-color: #c8c8c8;
     box-sizing: border-box;
-    padding: 50px 20px 20px 20px;
+    padding: 0.6rem 20px 20px 20px;
     overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
     translate: -50%;
     transition: 1000ms ease;
+}
+@media (max-width: 768px) {
+    .history {
+        flex-direction: column-reverse;
+        width: auto;
+        height: 30%;
+        top: 15%;
+        translate: 0;
+    }
 }
 .history::-webkit-scrollbar {
     display: block;
@@ -123,10 +155,21 @@ body{
     justify-content: flex-start;
     width: 100%;
     z-index: 100;
-    font-size: 50px;
+    font-size: 0.9rem;
+    padding: 0.1rem 0;
 }
 .separate{
-    border-top: 2px solid rgba(0, 0, 0, 0.253);
+    border-top: 1px solid rgba(0, 0, 0, 0.253);
+    border-bottom: none;
+}
+@media (max-width: 768px) {
+    .operation {
+        justify-content: flex-end;
+    }
+    .separate{
+        border-top: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.253);
+    }
 }
 .operand {
     font-family: "Lexend Exa", serif;
@@ -147,7 +190,7 @@ body{
 }
 .prev-operation{
     font-family: "Lexend Exa", serif;
-    font-size: 30px;
+    font-size: 0.5rem;
     font-weight: bold;
 }
 .shine-container{
@@ -185,12 +228,29 @@ body{
     border-radius: 20px;
     translate: 0;
 }
-.container > .calculator{/*:hover*/
+@media (max-width: 768px) {
+    .container > .history {
+        top: 0%;
+        translate: 0;
+    }
+}
+.container > .calculator{
     left: 0;
     translate: 0;
 }
-.container:hover > .arrow-toggle{/*:hover*/
+@media (max-width: 768px) {
+    .container > .calculator {
+        bottom: 0%;
+    }
+}
+.container > .arrow-toggle{
     left: 98%;
+}
+@media (max-width: 768px) {
+    .container > .arrow-toggle {
+        top: 1%;
+        left: 50%;
+    }
 }
 .key:hover{
     cursor: pointer;
@@ -202,48 +262,33 @@ body{
 .key.div{
     background-color: #FF445A;
 }
-.key .div{
-    width: 45px;
-}
 .key.sum{
     background-color: #63DE77;
-}
-.key .sum{
-    width: 40px;
 }
 .key.sub{
     background-color: #FFC804;
 }
-.key .sub{
-    width: 40px;
-}
 .key.mult{
     background-color: #2388FF;
-}
-.key .mult{
-    width: 40px;
 }
 .key.equal{
     background-color: #F5F7FF;
 }
-.key .equal{
-    width: 35px;
-}
 .key.percent{
     background-color: #F5F7FF;
 }   
-.key .percent{
-    width: 40px;
-}
 .key.root{
     background-color:  #F5F7FF;
-}
-.key .root{
-    width: 35px;
 }
 .key.ce{
     background-color:  #1F2B54;
     color: white;
+}
+.key .root{
+    width: 0.8rem;
+}
+.key img{
+    width: 0.9rem;
 }
 .aux{
     /* border: 3px solid blue; */
@@ -258,6 +303,13 @@ body{
     left: 50%;
     translate: -50%;
 }
+@media (max-width: 768px) {
+    .aux {
+        width: 100%;
+        height: 15%;
+        top: 20%;
+    }
+}
 .arrow-toggle{
     padding: 10px 10px;
     background-color: #c8c8c8;
@@ -269,4 +321,12 @@ body{
     translate: 0 -50%;
     transition: 1000ms ease;
     z-index: -100;
+}
+@media (max-width: 768px) {
+    .arrow-toggle {
+        top: 15%;
+        left: 50%;
+        translate: -50% -100%;
+        transform: rotate(-90deg);
+    }
 }
