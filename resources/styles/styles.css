@@ -79,6 +79,8 @@ body{
 }
 .history{
     /* align-self: stretch; */
+    display: flex;
+    flex-direction: column;
     width: 50%;
     height: 100%;
     font-family: "Lexend Exa", serif;
@@ -91,7 +93,6 @@ body{
     padding: 50px 20px 20px 20px;
     overflow-y: scroll;
     overflow-x: hidden;
-    /* Translation */
     position: relative;
     translate: -50%;
     transition: 1000ms ease;
@@ -123,9 +124,6 @@ body{
     width: 100%;
     z-index: 100;
     font-size: 50px;
-    /* border-bottom: 3px solid rgb(0, 0, 0);
-    border-top: 3px solid rgb(0, 0, 0); */
-    /* border: 2px solid black; */
 }
 .separate{
     border-top: 2px solid rgba(0, 0, 0, 0.253);
@@ -133,6 +131,7 @@ body{
 .operand {
     font-family: "Lexend Exa", serif;
     font-weight: bold;
+    position: relative;
     /* font-size: 50px; */
 }
 .operand-box{
@@ -182,13 +181,16 @@ body{
 .arrow-toggle > img{
     height: 40px;
 }
-.container:hover > .history{/*:hover*/
+.container > .history{/*:hover*/
     border-radius: 20px;
     translate: 0;
 }
-.container:hover > .calculator{/*:hover*/
+.container > .calculator{/*:hover*/
     left: 0;
     translate: 0;
+}
+.container:hover > .arrow-toggle{/*:hover*/
+    left: 98%;
 }
 .key:hover{
     cursor: pointer;
@@ -257,13 +259,14 @@ body{
     translate: -50%;
 }
 .arrow-toggle{
-    padding: 10px 0;
+    padding: 10px 10px;
     background-color: #c8c8c8;
     border: none;
     border-radius: 0 10px 10px 0;
-    display: flex;
     position: absolute;
     top: 50%;
-    left: 99%;
-    translate: 0% -50%;
+    left: 75%;
+    translate: 0 -50%;
+    transition: 1000ms ease;
+    z-index: -100;
 }

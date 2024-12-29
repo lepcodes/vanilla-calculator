@@ -7,7 +7,6 @@ let operand2 = '';
 let operator = '';
 let result = 0;
 
-
 // Mapping keys to operations
 const operations = {
   '+': true,
@@ -138,6 +137,7 @@ function applyOperator(op) {
     else if(operand2 == ''){
       operand2 = input;
       result = eval(operand1+operator+operand2);
+      result = formatResult(result)
       setNumberStyle(operandCount, 'operand');
       appendOperator(op, operationCount);
       appendNumber(result, operationCount, 'operand-box');
@@ -169,6 +169,7 @@ function calculateResult() {
     operand2 = input;
     result = eval(operand1+operator+operand2);
   }
+  result = formatResult(result)
   setNumberStyle(operandCount, 'operand');
   prependOperator('=', operationCount);
   resultEffect(operatorCount);
@@ -184,7 +185,7 @@ function calculateResult() {
 function applySqrt() {
   const sqrt = Math.sqrt(parseFloat(input));
   setNumber('√('+input+')', operandCount, 'operand-box');
-  display.textContent = sqrt;
+  display.textContent = formatResult(sqrt);
   input = sqrt;
   newInput = true;
 }
@@ -201,7 +202,7 @@ function applyPercentage() {
       pctg = eval(input + '*0.01');
     }
     setNumber(input+'%',operandCount,'operand-box');
-    display.textContent = pctg;
+    display.textContent = formatResult(pctg);
     input = pctg;
     newInput = true;
   }
