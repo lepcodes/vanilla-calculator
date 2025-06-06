@@ -53,7 +53,7 @@ All you need is a modern web browser that supports HTML5, CSS3, and JavaScript (
 
 1.  Clone the repository to your local machine:
     ```sh
-    git clone [https://github.com/lepcodes/vanilla-calculator.git](https://github.com/lepcodes/vanilla-calculator.git)
+    git clone https://github.com/lepcodes/vanilla-calculator.git
     ```
 2.  Navigate to the project directory:
     ```sh
