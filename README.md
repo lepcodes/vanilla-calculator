@@ -57,6 +57,6 @@ All you need is a modern web browser that supports HTML5, CSS3, and JavaScript (
     ```
 2.  Navigate to the project directory:
     ```sh
-    cd your-repo-name
+    cd vanilla-calculator
     ```
 3.  Open the `index.html` file in your browser. That's it!
